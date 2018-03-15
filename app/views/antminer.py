@@ -36,7 +36,9 @@ def miners():
     total_hash_rate_per_model = {"L3+": {"value": 0, "unit": "MH/s" },
                                 "S7": {"value": 0, "unit": "GH/s" },
                                 "S9": {"value": 0, "unit": "GH/s" },
+                                "S9_201": {"value": 0, "unit": "GH/s" },
                                 "D3": {"value": 0, "unit": "MH/s" },
+                                "D3_204": {"value": 0, "unit": "MH/s" },
                                 "T9": {"value": 0, "unit": "TH/s" },
                                 "A3": {"value": 0, "unit": "GH/s" },
                                 "L3": {"value": 0, "unit": "MH/s" },
@@ -119,8 +121,8 @@ def miners():
                 errors = True
                 miner_errors.update({miner.ip: error_message})
             if temps:
-                if max(temps) >= 80:
-                    error_message = "[WARNING] High temperatures on miner '{}'.".format(miner.ip)
+                if max(temps) >= 84:
+                    error_message = "[WARNING] High temperatures'{}'".format(temperatures[miner.ip]) + "on miner '{}'.".format(miner.ip)
                     logger.warning(error_message)
                     flash(error_message, "warning")
             if not temps:

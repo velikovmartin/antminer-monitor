@@ -61,17 +61,18 @@ cryptocurrency, crypto, miner, mine, mining
     </div>
 </div>
 <br>
-
-{%- with messages = get_flashed_messages(with_categories=true) %}
-    {%- if messages %}
-        {%- for category, message in messages %}
-            <div class="{{ category }}">
-                <strong>{{ message }}</strong>
-            </div>
-        {%- endfor %}
-    {%- endif %}
-{%- endwith %}
-
+<fieldset name="error_messages">
+    <legend>Warnings and Errors</legend>
+    {%- with messages = get_flashed_messages(with_categories=true) %}
+        {%- if messages %}
+            {%- for category, message in messages %}
+                <div class="{{ category }}">
+                    <strong>{{ message }}</strong>
+                </div>
+            {%- endfor %}
+        {%- endif %}
+    {%- endwith %}
+</fieldset>
 {%- if inactive_miners %}
     <fieldset name="inactive_miner_list">
         <legend>In-active Miners ({{ inactive_miners|length }})</legend>
@@ -120,7 +121,7 @@ cryptocurrency, crypto, miner, mine, mining
         {%- for active_miner in active_miners|sort(attribute='ip') %}
             <tr{%- if active_miner.ip in miner_errors %} class="error"{%- endif %}>
                 <td><a target="_blank" href="http://{{ active_miner.ip }}">{{ active_miner.ip }}</a></td>
-                <td>{{ workers[active_miner.ip] }}</td>
+                <td style=" max-width: 150px; overflow: hidden;">{{ workers[active_miner.ip] }}</td>
                 <td title="{{ active_miner.model.description }}">{{ active_miner.model.model }}</td>
                 <td>{{ active_miner.remarks }}</td>
                 <td>{{ miner_chips[active_miner.ip]['status']['Os'] }}</td>
