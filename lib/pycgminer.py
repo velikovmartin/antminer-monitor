@@ -103,7 +103,13 @@ def get_pools(ip):
     return dict(output)
 
 
-def get_stats(ip):
+def get_stats(arg):
+    if ":" in arg:
+        temp = arg.split(':', 1)
+        ip = temp[0]
+        myPort = temp[1]
+    else:
+        ip = arg
     cgminer = CgminerAPI(host=ip)
     output = cgminer.stats()
     output.update({"IP": ip})
