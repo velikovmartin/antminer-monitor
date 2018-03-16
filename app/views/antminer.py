@@ -48,6 +48,8 @@ def miners():
                                 
     errors = False
     miner_errors = {}
+    warnings = False
+    miner_warnings = {}
 
     for miner in miners:
         miner_stats = get_stats(miner.ip)
@@ -122,10 +124,12 @@ def miners():
                 errors = True
                 miner_errors.update({miner.ip: error_message})
             if temps:
-                if max(temps) >= 84:
+                if max(temps) >= 85:
                     error_message = "[WARNING] High temperatures'{}'".format(temperatures[miner.ip]) + "on miner '{}'.".format(miner.ip)
                     logger.warning(error_message)
                     flash(error_message, "warning")
+                    warnings = True
+                    miner_warnings.update({miner.ip: error_message})
             if not temps:
                 temperatures.update({miner.ip: 0})
                 error_message = "[ERROR] Could not retrieve temperatures from miner '{}'.".format(miner.ip)
@@ -173,6 +177,7 @@ def miners():
                            total_hash_rate_per_model=total_hash_rate_per_model_temp,
                            loading_time=loading_time,
                            miner_errors=miner_errors,
+                           miner_warnings=miner_warnings,
                            )
 
 

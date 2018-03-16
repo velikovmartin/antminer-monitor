@@ -119,7 +119,10 @@ cryptocurrency, crypto, miner, mine, mining
             <th>Remove</th>
         </tr>
         {%- for active_miner in active_miners|sort(attribute='ip') %}
-            <tr{%- if active_miner.ip in miner_errors %} class="error"{%- endif %}>
+            <tr
+            {%- if active_miner.ip in miner_errors %} class="error"{%- endif %}
+            {%- if active_miner.ip in miner_warnings %} class="warning"{%- endif %}
+            >
                 <td><a target="_blank" href="http://{{ active_miner.ip }}">{{ active_miner.ip }}</a></td>
                 <td style=" max-width: 150px; overflow: hidden;">{{ workers[active_miner.ip] }}</td>
                 <td title="{{ active_miner.model.description }}">{{ active_miner.model.model }}</td>
@@ -132,8 +135,7 @@ cryptocurrency, crypto, miner, mine, mining
                 <td>{{ hash_rates[active_miner.ip] }}</td>
                 <td>{{ hw_error_rates[active_miner.ip] }}</td>
                 <td>{{ uptimes[active_miner.ip] }}</td>
-                <td title="{%- if active_miner.ip in miner_errors %}{{ miner_errors[active_miner.ip] }}{%- endif %}">
-                    {%- if active_miner.ip in miner_errors %}Check your miner{%- else %}OK{%- endif %}</td>
+                <td title="{%- if active_miner.ip in miner_errors %}{{ miner_errors[active_miner.ip] }}{%- endif %} | {%- if active_miner.ip in miner_errors %}Check your miner{%- else %}OK{%- endif %}"></td>
                 <!--<td><a target="_blank" href="/{{ active_miner.ip }}/summary">Summary</a> |
                     <a target="_blank" href="/{{ active_miner.ip }}/pools">Pools</a> |
                     <a target="_blank" href="/{{ active_miner.ip }}/stats">Stats</a></td>-->
