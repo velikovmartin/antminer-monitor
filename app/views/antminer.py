@@ -38,6 +38,7 @@ def miners():
                                 "S7_206": {"value": 0, "unit": "GH/s" },
                                 "S9": {"value": 0, "unit": "GH/s" },
                                 "s9_3": {"value": 0, "unit": "GH/s" },
+                                "S94": {"value": 0, "unit": "GH/s" },
                                 "D3": {"value": 0, "unit": "MH/s" },
                                 "d3_2": {"value": 0, "unit": "MH/s" },
                                 "d3_3": {"value": 0, "unit": "MH/s" },
