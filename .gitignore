@@ -62,7 +62,7 @@ coverage.xml
 local_settings.py
 
 # Flask stuff:
-instance/
+instance/settings.py
 .webassets-cache
 
 # Scrapy stuff:
@@ -87,8 +87,8 @@ celerybeat-schedule
 *.sage.py
 
 # Environments
-.env
-.venv
+.env/
+.venv/
 env/
 venv/
 ENV/

@@ -12,7 +12,9 @@
     {% endblock head_meta -%}
     <title>{% block title -%}{% endblock title %}</title>
     {% block head_css -%}
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/menu.css') }}" />
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/genericons/3.0.3/genericons.css" />
     {% endblock head_css -%}
     {% block head -%}
     {% endblock head -%}
@@ -20,13 +22,16 @@
     {% endblock head_tail -%}
 </head>
 <body>
+    {% block menu -%}
+        {% include "layouts/menu.html" -%}
+    {% endblock menu -%}
+
     {% block page_body -%}
     <div id="container">
 
         {% block messages -%}
 
         {% endblock messages -%}
-
 
         {% block body -%}{% endblock body -%}
     </div>
@@ -36,7 +41,6 @@
 
     {% block tail_js -%}
     <script src="{{ url_for('static', filename='scripts/vendor/coin.js') }}"></script>
-    <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
     {% endblock tail_js -%}
 
     {% block tail -%}
@@ -50,7 +54,10 @@
         alt="Fork me on GitHub"
         data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
         <center>
-        <i>Generated in {{ loading_time }} seconds</br></br>
+	{% if loading_time -%}
+        <i>Generated in {{ loading_time }} seconds
+	{% endif -%}
+	<br><br>
         <script src="{{ url_for('static', filename='scripts/donate.js') }}"></script></br></br>
         &copy; Copyright 2017-2018 by <a href="https://soulis.tech">Anastasios Selalmazidis</a>.
         Source code <a target="_blank"
