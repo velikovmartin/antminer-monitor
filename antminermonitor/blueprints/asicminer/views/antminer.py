@@ -252,7 +252,7 @@ def miners():
                 errors = True 
                 miner_errors.update({miner.ip: error_message})
                 telegram_send.send([error_message])
-            elif ghs5s < 12000 and miner.model.model == 'S9':
+            elif ghs5s < 11000 and miner.model.model == 'S9':
                 error_message = ("[Warning] Miner ghs5s ('{}') is bellow normal '{}'.").format(ghs5s, miner.ip) 
                 current_app.logger.warning(error_message)
                 miner_errors.update({miner.ip: error_message})
